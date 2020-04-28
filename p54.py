@@ -11,4 +11,3 @@ def binomial_rv(n, p):
 
 
 print(binomial_rv(10, 0.5))
-
