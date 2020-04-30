@@ -13,3 +13,10 @@ class Solow:
     def steady_state(self):
         n, s, delta, alpha, z = self.n, self.s, self.delta, self.alpha, self.z
         return ((s * z) / (n + delta)) ** (1 / (1 - alpha))
+
+    def generate_sequence(self, t):
+        path = []
+        for i in range(t):
+            path.append(self.k)
+            self.update()
+        return path
