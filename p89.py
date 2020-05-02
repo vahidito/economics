@@ -24,8 +24,14 @@ class Solow:
 
 import matplotlib.pyplot as plt
 
+s1 = Solow(alpha=0.7)
 s2 = Solow(k=0.8)
+s3 = Solow(k=0.8, delta=0.8)
 T = 60
-fig, ax = plt.subplots(figsize=(9, 6))
-ax.plot([s2.steady_state()] * T, 'k-', label='steady state')
+fig, ax = plt.subplots(figsize=(5, 3))
+ax.plot([s2.steady_state()] * T, 'k-', label='steady state of Solow Model')
+for s in s1, s2, s3:
+    lb = f'capital series from initial state {s.k}'
+    ax.plot(s.generate_sequence(T), 'o-', lw=2.5, alpha=0.6, label=lb)
 ax.legend()
+plt.show()
