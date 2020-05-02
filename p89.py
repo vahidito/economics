@@ -20,3 +20,12 @@ class Solow:
             path.append(self.k)
             self.update()
         return path
+
+
+import matplotlib.pyplot as plt
+
+s2 = Solow(k=0.8)
+T = 60
+fig, ax = plt.subplots(figsize=(9, 6))
+ax.plot([s2.steady_state()] * T, 'k-', label='steady state')
+ax.legend()
