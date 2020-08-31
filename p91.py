@@ -1,4 +1,4 @@
-from scipy import quad
+from scipy.integrate import quad
 
 
 class Market:
@@ -14,16 +14,16 @@ class Market:
         return self.ad - self.bd * self.price()
 
     def consumer_surp(self):
-        integrand = lambda x: (self.ad / self.bd) - (1 / self.bd) * x
-        area, error = quad(integrand, 0, self.quantity())
-        return area - self.price() * self.quantity()
+        integrand = lambda x: -(self.ad / self.bd) - (1 / self.bd) * x
+        area = quad(integrand, 0, self.quantity())
+        return area - (self.price() * self.quantity())
 
     def producer_surp(self):
         integrand = lambda x: -(self.az / self.bz) + (1 / self.bz) * x
-        area, error = quad(integrand, 0, self.quantity())
+        area = quad(integrand, 0, self.quantity())
         return (self.price() - self.tax) * self.quantity() - area
 
-    def taxrev(self):
+    def taxrevenue(self):
         return self.tax * self.quantity()
 
     def inverse_demand(self, x):
@@ -35,6 +35,7 @@ class Market:
     def inverse_supply_no_tax(self, x):
         return -(self.az / self.bz) + (1 / self.bz) * x
 
-    baseline_params = 15, .5, -2, .5, 3
-    m = Market(*baseline_params)
-    print("equilibrium price = ", m.price())
+
+baseline_params = 15, .5, -2, .5, 3
+m = Market(*baseline_params)
+print("equilibrium price = ", m.price())
