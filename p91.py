@@ -37,6 +37,5 @@ class Market:
 
 
 baseline_params = 15, .5, -2, .5, 3
-ad, bd, az, bz, tax = 15, 0.5, -2, 0.5, 3
-m = Market(ad=15, bd=0.5, az=-2, bz=0.5, tax=3)
-print("equilibrium price = ", m.price())
+mmm = Market(15, .5, -2, .5, 3)
+print("equilibrium price = ", mmm.price())
